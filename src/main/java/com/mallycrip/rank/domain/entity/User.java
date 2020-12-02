@@ -24,6 +24,27 @@ public class User {
     @Column(nullable = false, length = 60)
     private String password;
 
+    @Column(nullable = false, length = 5)
+    private String name;
+
+    @Column(nullable = true, length = 255)
+    private String description;
+
     @Column(name = "github_id", nullable = false, length = 50)
     private String githubId;
+
+    public User changeUserName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public User changeDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public User changeGithubId(String githubId) {
+        this.githubId = githubId;
+        return this;
+    }
 }

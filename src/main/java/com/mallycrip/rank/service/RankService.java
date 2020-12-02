@@ -3,9 +3,11 @@ package com.mallycrip.rank.service;
 import com.mallycrip.rank.dto.*;
 
 public interface RankService {
+    public AuthResponse login(AuthRequest request);
+
     public UserResponse getMyInfo();
 
-    public UserResponse getUserInfo(GetUserInfoRequest request);
+    public UserResponse getUserInfo(String email);
 
     public void checkEmail(CheckEmailRequest request);
 

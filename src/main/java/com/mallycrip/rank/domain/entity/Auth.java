@@ -9,7 +9,7 @@ import org.springframework.data.redis.core.index.Indexed;
 
 @Getter
 @Builder
-@RedisHash(value = "email_code")
+@RedisHash(value = "auth_code")
 @AllArgsConstructor
 public class Auth {
     @Id

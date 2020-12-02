@@ -5,16 +5,10 @@ import lombok.Getter;
 import javax.validation.constraints.NotNull;
 
 @Getter
-public class RegisterRequest {
+public class AuthRequest {
     @NotNull
-    private String authCode;
+    private String email;
 
     @NotNull
     private String password;
-
-    @NotNull
-    private String githubId;
-
-    @NotNull
-    private String name;
 }

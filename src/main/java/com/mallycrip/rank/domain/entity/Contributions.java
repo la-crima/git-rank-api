@@ -16,5 +16,18 @@ public class Contributions {
     private String email;
 
     @Indexed
+    private String githubId;
+
+    @Indexed
     private Long numOfContributions;
+
+    public Contributions updateNumOfContributions(Long numOfContributions) {
+        this.numOfContributions = numOfContributions;
+        return this;
+    }
+
+    public Contributions changeGithubId(String githubId) {
+        this.githubId = githubId;
+        return this;
+    }
 }
