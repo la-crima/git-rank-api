@@ -1,6 +1,7 @@
 # Classe-de-guitare
 La dixième place au classement
-
+## Explain
+대마고 깃허브 랭킹 (Contribution 갯수) 서비스 
 ## Docs
 ### Register 
 #### Get Auth Code (/account/email POST)
