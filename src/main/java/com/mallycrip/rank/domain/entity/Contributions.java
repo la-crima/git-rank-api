@@ -19,10 +19,18 @@ public class Contributions {
     private String githubId;
 
     @Indexed
+    private String githubImage;
+
+    @Indexed
     private Long numOfContributions;
 
     public Contributions updateNumOfContributions(Long numOfContributions) {
         this.numOfContributions = numOfContributions;
+        return this;
+    }
+
+    public Contributions updateGithubImage(String githubImage) {
+        this.githubImage = githubImage;
         return this;
     }
 
