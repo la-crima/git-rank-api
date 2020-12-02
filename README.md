@@ -3,6 +3,7 @@ La dixième place au classement
 ## Explain
 대마고 깃허브 랭킹 (Contribution 갯수) 서비스 
 ## Docs
+Baseurl : http://52.79.253.30:5050
 ### Register 
 #### Get Auth Code (/account/email POST)
 __Request__
