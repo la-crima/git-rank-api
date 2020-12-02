@@ -30,6 +30,7 @@ public class GetRankUseCaseImpl implements GetRankUseCase {
             users.add(UserResponse.builder()
                     .email(contributions.getEmail())
                     .githubId(user.getGithubId())
+                    .githubImage(contributions.getGithubImage())
                     .name(user.getName())
                     .description(user.getDescription())
                     .contributions(contributions.getNumOfContributions())

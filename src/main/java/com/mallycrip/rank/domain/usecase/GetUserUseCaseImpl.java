@@ -23,6 +23,7 @@ public class GetUserUseCaseImpl implements GetUserUseCase {
         return UserResponse.builder()
                 .email(user.getEmail())
                 .description(user.getDescription())
+                .githubImage(contributions.getGithubImage())
                 .name(user.getName())
                 .githubId(user.getGithubId())
                 .contributions(contributions.getNumOfContributions())

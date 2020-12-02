@@ -10,6 +10,8 @@ public class UserResponse {
 
     private String githubId;
 
+    private String githubImage;
+
     private String name;
 
     private String description;

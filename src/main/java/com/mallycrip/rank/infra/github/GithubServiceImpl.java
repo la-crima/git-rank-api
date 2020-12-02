@@ -2,6 +2,7 @@ package com.mallycrip.rank.infra.github;
 
 import com.mallycrip.rank.domain.entity.Contributions;
 import com.mallycrip.rank.exception.NotFoundException;
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -17,5 +18,15 @@ public class GithubServiceImpl implements GithubService {
             Elements elements = doc.select("html body div div h2");
             return Long.valueOf(elements.get(0).text().replaceAll("[^0-9]", ""));
         } catch (Exception e) { throw new NotFoundException(); }
+    }
+
+    @Override
+    public String getImageUrl(String githubId) {
+        try {
+            String json = Jsoup.connect(
+                    "https://api.github.com/users/"+githubId).ignoreContentType(true).execute().body();
+            JSONObject jObject = new JSONObject(json);
+            return jObject.getString("avatar_url");
+        } catch (Exception e) { return ""; }
     }
 }
