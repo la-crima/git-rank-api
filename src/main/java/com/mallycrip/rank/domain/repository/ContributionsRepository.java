@@ -5,5 +5,5 @@ import com.mallycrip.rank.domain.entity.Contributions;
 import org.springframework.data.repository.CrudRepository;
 
 public interface ContributionsRepository extends CrudRepository<Contributions, String> {
-    Iterable<Contributions> findAllByOrderByNumOfContributionsDesc();
+    Iterable<Contributions> findAllByOrderByNumOfContributionsAsc();
 }

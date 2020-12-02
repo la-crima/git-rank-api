@@ -23,7 +23,7 @@ public class GetRankUseCaseImpl implements GetRankUseCase {
     @Override
     public List<UserResponse> execute() {
         List<UserResponse> users = new ArrayList<UserResponse>();
-        for (Contributions contributions: contributionsRepository.findAllByOrderByNumOfContributionsDesc()) {
+        for (Contributions contributions: contributionsRepository.findAllByOrderByNumOfContributionsAsc()) {
             User user = userRepository.findById(contributions.getEmail())
                     .orElseThrow(NotFoundException::new);
 
