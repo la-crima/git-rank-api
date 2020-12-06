@@ -7,6 +7,7 @@ import com.mallycrip.rank.domain.repository.UserRepository;
 import com.mallycrip.rank.dto.UserResponse;
 import com.mallycrip.rank.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -22,8 +23,9 @@ public class GetRankUseCaseImpl implements GetRankUseCase {
 
     @Override
     public List<UserResponse> execute() {
+        Sort sort = sortByContributions();
         List<UserResponse> users = new ArrayList<UserResponse>();
-        for (Contributions contributions: contributionsRepository.findAllByOrderByNumOfContributionsAsc()) {
+        for (Contributions contributions: contributionsRepository.findAll(sort)) {
             User user = userRepository.findById(contributions.getEmail())
                     .orElseThrow(NotFoundException::new);
 
@@ -38,5 +40,9 @@ public class GetRankUseCaseImpl implements GetRankUseCase {
         }
 
         return users;
+    }
+
+    private Sort sortByContributions() {
+        return Sort.by(Sort.Direction.DESC, "numOfContributions");
     }
 }
