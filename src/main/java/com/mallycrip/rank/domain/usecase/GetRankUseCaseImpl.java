@@ -10,9 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @Component
@@ -23,9 +21,8 @@ public class GetRankUseCaseImpl implements GetRankUseCase {
 
     @Override
     public List<UserResponse> execute() {
-        Sort sort = sortByContributions();
         List<UserResponse> users = new ArrayList<UserResponse>();
-        for (Contributions contributions: contributionsRepository.findAll(sort)) {
+        for (Contributions contributions: sortContributions(contributionsRepository.findAll())) {
             User user = userRepository.findById(contributions.getEmail())
                     .orElseThrow(NotFoundException::new);
 
@@ -42,7 +39,12 @@ public class GetRankUseCaseImpl implements GetRankUseCase {
         return users;
     }
 
-    private Sort sortByContributions() {
-        return Sort.by(Sort.Direction.DESC, "numOfContributions");
+    private Iterable<Contributions> sortContributions(Iterable<Contributions> contributions) {
+        List<Contributions> sortedContributions = new ArrayList<>();
+        for (Contributions contribution: contributions) {
+            sortedContributions.add(contribution);
+        }
+        sortedContributions.sort(Comparator.comparing(Contributions::getNumOfContributions));
+        return sortedContributions;
     }
 }
