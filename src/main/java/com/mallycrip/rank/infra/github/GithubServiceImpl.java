@@ -26,10 +26,7 @@ public class GithubServiceImpl implements GithubService {
             String json = Jsoup.connect(
                     "https://api.github.com/users/"+githubId).ignoreContentType(true).execute().body();
             JSONObject jObject = new JSONObject(json);
-            System.out.println(jObject);
             return jObject.getString("avatar_url");
-        } catch (Exception e) {
-            System.out.println(e);
-            return ""; }
+        } catch (Exception e) { return ""; }
     }
 }
