@@ -1,5 +1,4 @@
-# Classe-de-guitare
-La dixième place au classement
+# Git Rank API
 ## Explain
 대마고 깃허브 랭킹 (Contribution 갯수) 서비스 
 ## Docs
