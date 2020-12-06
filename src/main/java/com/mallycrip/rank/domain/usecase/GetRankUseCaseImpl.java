@@ -44,7 +44,7 @@ public class GetRankUseCaseImpl implements GetRankUseCase {
         for (Contributions contribution: contributions) {
             sortedContributions.add(contribution);
         }
-        sortedContributions.sort(Comparator.comparing(Contributions::getNumOfContributions));
+        sortedContributions.sort(Comparator.comparing(Contributions::getNumOfContributions).reversed());
         return sortedContributions;
     }
 }
