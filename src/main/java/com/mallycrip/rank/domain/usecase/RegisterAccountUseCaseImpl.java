@@ -46,6 +46,7 @@ public class RegisterAccountUseCaseImpl implements RegisterAccountUseCase {
                 Contributions.builder()
                         .email(auth.getEmail())
                         .numOfContributions(githubService.getContributions(githubId))
+                        .githubImage(githubService.getImageUrl(githubId))
                         .githubId(githubId)
                         .build()
         );
