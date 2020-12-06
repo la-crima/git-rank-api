@@ -17,11 +17,9 @@ public class LoginUseCaseImpl implements LoginUseCase {
 
     @Override
     public AuthResponse execute(String email, String password) {
-        userRepository.findById(email).ifPresent(
-                user -> {
-                    if (!passwordService.matches(password, user.getPassword())) throw new AuthenticationFailedException();
-                }
-        );
+        userRepository.findById(email)
+                .filter(user -> passwordService.matches(password, user.getPassword()))
+                .orElseThrow(AuthenticationFailedException::new);
         return AuthResponse.builder().accessToken(jwtProvider.generateAccessToken(email)).build();
     }
 }
