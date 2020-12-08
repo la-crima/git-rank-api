@@ -2,6 +2,7 @@ package com.mallycrip.rank.domain.usecase;
 
 import com.mallycrip.rank.domain.repository.ContributionsRepository;
 import com.mallycrip.rank.domain.repository.UserRepository;
+import com.mallycrip.rank.infra.github.GithubService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 public class UpdateProfileUseCaseImpl implements UpdateProfileUseCase {
     private final UserRepository userRepository;
     private final ContributionsRepository contributionsRepository;
+    private final GithubService githubService;
 
     @Override
     public void execute(String email, String name, String description, String githubId) {
@@ -18,6 +20,8 @@ public class UpdateProfileUseCaseImpl implements UpdateProfileUseCase {
                     contributionsRepository.findById(email).ifPresent(
                             contributions -> {
                                 contributions.changeGithubId(githubId);
+                                contributions.updateNumOfContributions(githubService.getContributions(githubId));
+                                contributions.updateGithubImage(githubService.getImageUrl(githubId));
                                 contributionsRepository.save(contributions);
                     });
 
