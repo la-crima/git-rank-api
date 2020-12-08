@@ -45,7 +45,7 @@ public class RankController {
 
     @PutMapping("/account")
     @ResponseStatus(HttpStatus.OK)
-    public void changeInfo(ChangeInfoRequest request) {
+    public void changeInfo(@RequestBody @Valid ChangeInfoRequest request) {
         rankService.changeInfo(request);
     }
 
