@@ -17,7 +17,7 @@ public class GithubServiceImpl implements GithubService {
                     "https://github.com/users/" + githubId + "/contributions").get();
             Elements elements = doc.select("html body div div h2");
             return Long.valueOf(elements.get(0).text().replaceAll("[^0-9]", ""));
-        } catch (Exception e) { throw new NotFoundException(); }
+        } catch (Exception e) { return 0L; }
     }
 
     @Override
