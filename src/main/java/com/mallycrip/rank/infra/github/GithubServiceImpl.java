@@ -17,7 +17,10 @@ public class GithubServiceImpl implements GithubService {
                     "https://github.com/users/" + githubId + "/contributions").get();
             Elements elements = doc.select("html body div div h2");
             return Long.valueOf(elements.get(0).text().replaceAll("[^0-9]", ""));
-        } catch (Exception e) { return 0L; }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return 0L;
+        }
     }
 
     @Override
@@ -27,6 +30,9 @@ public class GithubServiceImpl implements GithubService {
                     "https://api.github.com/users/"+githubId).ignoreContentType(true).execute().body();
             JSONObject jObject = new JSONObject(json);
             return jObject.getString("avatar_url");
-        } catch (Exception e) { return "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg"; }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg";
+        }
     }
 }

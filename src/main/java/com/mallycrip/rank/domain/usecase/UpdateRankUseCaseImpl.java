@@ -23,7 +23,6 @@ public class UpdateRankUseCaseImpl implements UpdateRankUseCase {
     @Scheduled(fixedDelay = 43200000)
     public void execute() throws IOException {
         for (Contributions contributions: contributionsRepository.findAll()) {
-
             contributions.updateNumOfContributions(githubService.getContributions(contributions.getGithubId()));
             contributions.updateGithubImage(githubService.getImageUrl(contributions.getGithubId()));
             contributionsRepository.save(
